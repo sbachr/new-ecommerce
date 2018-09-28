@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hoyong Shopping</title>
+  <link rel="stylesheet" href="main.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- jQuery library -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <!-- Popper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified Bootstrap JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <navbar v-bind:carts="carts"></navbar>
+      <div class="row">
+        <div class="jumbotron col-lg-12">
+          <img src="https://www.asistech.in/wp-content/uploads/2018/06/ecommerce-website-banner.jpg" style="position:relative; width:100%; margin:auto;padding:0; z-index:20;">
+        </div>
+      </div>
+      <hr>
+
+      <div class="row">
+        <main>
+          <div class="col-lg-2 col-md-12" style="text-align: left">
+            <h5>Category</h5>
+            <div class="custom-control custom-checkbox">
+              <label v-for="category in categoryDisp" id="category-list" class="custom-control-label font-weight-light"
+                for="customCheck1">
+                <input type="checkbox" v-bind:value=category v-bind:id=category v-model="filterCategory">
+                {{category}}
+              </label>
+            </div>
+
+            <div class="slidecontainer" style="text-align: left">
+              <h5>Price</h5>
+              <input type="range" v-bind:min=minPrice v-bind:max=maxPrice value="50" class="slider" id="myRange"
+                v-model="rangePrice">
+              min:{{minPrice}}
+              max:{{maxPrice}}
+              filter:{{rangePrice}}
+            </div>
+          </div>
+          <div class="vl"></div>
+
+          <div class="col-lg-10">
+            <ul id="showcase" class="flex-container wrap container">
+              <list-item v-for="stock in categoryShow" v-bind:stock="stock">
+              </list-item>
+            </ul>
+          </div>
+        </main>
+      </div>
+
+
+      <div class="row container-fluid d-flex justify-content-center" style="background-color:black;">
+        <footer>
+          <marquee behavior="" direction="">
+            <h2>Happy Shopping.. Happy Shopping</h2>
+          </marquee>
+        </footer>
+      </div>
+
+      <div class="modal fade" id="myCart" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">your cart</h4>
+            </div>
+            <div class="modal-body" id="modal-cart-body">
+              <ul class="list-group">
+                <li class="list-group-item" v-for="item in carts">
+                  <img v-bind:src="item.img" alt="item.alt" width="100" height="100">
+                  <p>items : {{item.name}}</p>
+                  <p>price : {{item.price}}</p>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <div class="alert alert-dark" role="alert">
+                <h5 id="total-cart">total items : {{carts.length}}</h5>
+                <h5 id="total-cart">total price : Rp. {{
+                  carts.reduce(function(result, cart){
+                  return result + Number(cart.price);
+                  }, 0)
+                  }}
+                </h5>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" v-on:click="checkoutCart()">Checkout</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Shopping</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <admin-modal>
+
+      </admin-modal>
+    </div>
+
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+  <script src='lib/firebase.js'></script>
+  <script src="lib/navbar.js"></script>
+  <script src="lib/list-items.js"></script>
+  <script src="lib/admin.js"></script>
+  <script src="lib/vue.js"></script>
+</body>
+
+</html>

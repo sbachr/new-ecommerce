@@ -1,0 +1,94 @@
+*{
+    margin:0;
+    padding:0;
+}
+header{
+    width:100%;
+    height: 100px;
+}
+.flex-container{
+    display:flex;
+    justify-content: center;
+    list-style-type: none;
+}
+.wrap{
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;    
+} 
+.wrap li{
+    
+    margin: 6px;
+}
+.flex-item{
+    padding: 5px;
+    width: 290px;
+    justify-content: center;
+    line-height: 100px;
+    font-size:2em;
+    text-align: center;
+}
+.wrap li img{
+    margin: 0px;
+    padding: 0px;
+}
+.card {
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+padding: 0;
+
+}
+ /* Add a black background color to the top navigation */
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+    position: fixed;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.container{
+    width:100%;
+}  
+
+#category-list{
+    width: 100%;
+    line-height: 30px;
+    text-align: left;
+}
+
+.jumbotron{
+    color: #FFFFFF;
+    background-color : white !important;
+}
+
+.vl {
+    border-left: 5px soli rgb(218, 18, 18);
+    height: 800px;
+    position: absolute;
+    left: 95%;
+    margin-left: -3px;
+    top: 0;
+}
+
+hr{
+    size: 50x
+}
